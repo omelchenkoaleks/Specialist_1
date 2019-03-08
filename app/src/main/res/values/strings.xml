@@ -3,4 +3,5 @@
     <string name="app_name">Specialist</string>
     <string name="click_me_btn">Click me!</string>
     <string name="message_btn">The button has been pressed!</string>
+    <string name="flag_txt">flag</string>
 </resources>
