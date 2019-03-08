@@ -4,4 +4,6 @@
     <string name="click_me_btn">Click me!</string>
     <string name="message_btn">The button has been pressed!</string>
     <string name="flag_txt">flag</string>
+    <string name="type_your_name_here_txt">Type your name here:</string>
+    <string name="field_et">field ...</string>
 </resources>
