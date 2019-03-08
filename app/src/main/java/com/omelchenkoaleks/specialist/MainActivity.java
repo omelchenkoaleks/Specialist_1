@@ -74,4 +74,13 @@ public class MainActivity extends AppCompatActivity {
                 "onRestart",
                 Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        Toast.makeText(
+                MainActivity.this,
+                "finish",
+                Toast.LENGTH_SHORT).show();
+    }
 }

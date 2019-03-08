@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Специалист</string>
+    <string name="click_me_btn">Нажми меня!</string>
+    <string name="message_btn">Кнопка была нажата!</string>
+</resources>
