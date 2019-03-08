@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Specialist</string>
     <string name="click_me_btn">Click me!</string>
+    <string name="message_btn">The button has been pressed!</string>
 </resources>
