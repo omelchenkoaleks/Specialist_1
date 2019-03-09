@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     Button clickMe;
     Button webView;
+    Button anim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,15 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this,
                 "onCreate",
                 Toast.LENGTH_SHORT).show();
+
+        anim = findViewById(R.id.label_anim_btn);
+        anim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AnimSample.class);
+                startActivity(intent);
+            }
+        });
 
         webView = findViewById(R.id.web_view_btn);
         webView.setOnClickListener(new View.OnClickListener() {
