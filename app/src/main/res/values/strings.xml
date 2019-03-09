@@ -8,4 +8,5 @@
     <string name="field_et">field ...</string>
     <string name="oops_msg">OOPS, something went wrong</string>
     <string name="hello_prefix">Hello </string>
+    <string name="launch_browser_btn">launch brawser</string>
 </resources>

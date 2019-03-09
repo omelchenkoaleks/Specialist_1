@@ -1,16 +1,16 @@
 package com.omelchenkoaleks.specialist;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
-    Button button;
+    Button clickMe;
+    Button webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +21,17 @@ public class MainActivity extends AppCompatActivity {
                 "onCreate",
                 Toast.LENGTH_SHORT).show();
 
-        button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        webView = findViewById(R.id.web_view_btn);
+        webView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        clickMe = findViewById(R.id.button);
+        clickMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, FrameLayoutActivity.class);
