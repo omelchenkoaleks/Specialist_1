@@ -6,4 +6,6 @@
     <string name="flag_txt">flag</string>
     <string name="type_your_name_here_txt">Type your name here:</string>
     <string name="field_et">field ...</string>
+    <string name="oops_msg">OOPS, something went wrong</string>
+    <string name="hello_prefix">Hello </string>
 </resources>

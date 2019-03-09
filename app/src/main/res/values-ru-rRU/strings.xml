@@ -3,4 +3,9 @@
     <string name="app_name">Специалист</string>
     <string name="click_me_btn">Нажми меня!</string>
     <string name="message_btn">Кнопка была нажата!</string>
+    <string name="flag_txt">Флаг</string>
+    <string name="type_your_name_here_txt">Укажите свое имя здесь...</string>
+    <string name="field_et">поле ввода</string>
+    <string name="oops_msg">Упс, что-то пошло не так!</string>
+    <string name="hello_prefix">Привет </string>
 </resources>
