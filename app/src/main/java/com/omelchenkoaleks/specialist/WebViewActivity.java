@@ -8,18 +8,20 @@ import android.webkit.WebViewClient;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class WebViewActivity extends AppCompatActivity {
-    WebView webView;
+    WebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
+        // так как мы получаем объект, который сам показывает...
+        mWebView = new WebView(this);
+        // можно обойтись без разметки и просто передать активити объект WebView:
+        setContentView(mWebView);
 
-        webView = findViewById(R.id.web_view);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("https://www.google.com");
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.loadUrl("https://www.google.com");
 
-        webView.setWebViewClient(new WebViewSampleClient());
+        mWebView.setWebViewClient(new WebViewSampleClient());
     }
 
     private class WebViewSampleClient extends WebViewClient {
@@ -32,8 +34,8 @@ public class WebViewActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
-            webView.goBack();
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && mWebView.canGoBack()) {
+            mWebView.goBack();
             return true;
         }
         return super.onKeyDown(keyCode, event);
