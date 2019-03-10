@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mClickMe;
     private Button mWebView;
     private Button mAnim;
+    private Button mControls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
 //                        MainActivity.this,
 //                        getString(R.string.message_btn),
 //                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mControls = findViewById(R.id.control_btn);
+        mControls.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ControlsSampleActivity.class);
+                startActivity(intent);
             }
         });
     }

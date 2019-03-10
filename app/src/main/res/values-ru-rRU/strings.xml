@@ -10,4 +10,6 @@
     <string name="hello_prefix">Привет </string>
     <string name="launch_browser_btn">запустить браузер</string>
     <string name="watch_anim_btn">смотреть анимацию</string>
+    <string name="choose_me_btn">выбери меня</string>
+    <string name="show_list_btn">показать лист</string>
 </resources>

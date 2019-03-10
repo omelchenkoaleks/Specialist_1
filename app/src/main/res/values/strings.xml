@@ -11,6 +11,7 @@
     <string name="launch_browser_btn">launch browser</string>
     <string name="watch_anim_btn">watch anim</string>
     <string name="show_list_btn">Show list</string>
+    <string name="choose_me_btn">choose me</string>
 
     <string-array name="stations">
         <item>Авиамоторная</item>
