@@ -12,4 +12,12 @@
     <string name="watch_anim_btn">смотреть анимацию</string>
     <string name="choose_me_btn">выбери меня</string>
     <string name="show_list_btn">показать лист</string>
+    <string name="call_on">звонок включен</string>
+    <string name="call_is_off">звонок выключен</string>
+    <string name="dog">Собака</string>
+    <string name="cat">Кошка</string>
+    <string name="rabbit">Кролик</string>
+    <string name="animal_selected_prefix">Выбрано живтотное:</string>
+    <string name="included">включено</string>
+    <string name="switched_off">выключено</string>
 </resources>

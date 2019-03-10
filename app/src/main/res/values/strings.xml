@@ -12,6 +12,14 @@
     <string name="watch_anim_btn">watch anim</string>
     <string name="show_list_btn">Show list</string>
     <string name="choose_me_btn">choose me</string>
+    <string name="call_on">call is on</string>
+    <string name="call_is_off">call is off</string>
+    <string name="dog">Dog</string>
+    <string name="cat">Cat</string>
+    <string name="rabbit">rabbit</string>
+    <string name="animal_selected_prefix">Animal selected:</string>
+    <string name="included">included</string>
+    <string name="switched_off">switched off</string>
 
     <string-array name="stations">
         <item>Авиамоторная</item>
