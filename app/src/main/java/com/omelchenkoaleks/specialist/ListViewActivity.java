@@ -12,11 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ListViewActivity extends ListActivity {
-    private ListView listStantions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /**
+         * Так как мы наследуюемся от ListActivity, нам не нужен метод setContentView(),
+         * потому-что ListView уже есть в активити от которого мы наследуемся...
+         */
 
         Resources resources = getResources();
         String[] stationsArray = resources.getStringArray(R.array.stations);
@@ -24,8 +27,9 @@ public class ListViewActivity extends ListActivity {
                 this, R.layout.list_item, stationsArray);
         setListAdapter(stations);
 
-        listStantions = getListView();
-        listStantions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // мы берем getListView, потому-что наследуемся от ListActivity:
+        ListView listStations = getListView();
+        listStations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(
                     AdapterView<?> parent,
