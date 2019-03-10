@@ -20,4 +20,6 @@
     <string name="animal_selected_prefix">Выбрано живтотное:</string>
     <string name="included">включено</string>
     <string name="switched_off">выключено</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="clean">Очистить</string>
 </resources>

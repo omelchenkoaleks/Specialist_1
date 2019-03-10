@@ -47,7 +47,20 @@
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
             android:text="@string/rabbit" />
-
+        
     </RadioGroup>
+
+    <EditText
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_name"/>
+
+    <Button
+        android:id="@+id/clean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/clean"
+        android:onClick="onCleanText"/>
 
 </LinearLayout>
