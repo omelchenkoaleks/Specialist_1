@@ -27,15 +27,15 @@ public class ListViewActivity extends ListActivity {
                 this, R.layout.list_item, stationsArray);
         setListAdapter(stations);
 
-        // мы берем getListView, потому-что наследуемся от ListActivity:
+        // мы берем getListView(), потому-что наследуемся от ListActivity:
         ListView listStations = getListView();
         listStations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(
-                    AdapterView<?> parent,
-                    View view,
-                    int position,
-                    long id) {
+                    AdapterView<?> parent, // передается тот адаптер, на котором мы все делаем
+                    View view, // тот тип вью, который является родительским в item.xml, конкретный на котором было нажатие
+                    int position, // позиция внутри этого списка
+                    long id) { // это может быть уникальный ключ к базе данных, идентификатор по которому можно найти объект
                 CharSequence text = ((TextView) view).getText();
                 int duration = Toast.LENGTH_LONG;
                 Context context = getApplicationContext();
