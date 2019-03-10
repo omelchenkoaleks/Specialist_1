@@ -9,9 +9,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    Button clickMe;
-    Button webView;
-    Button anim;
+    private Button mClickMe;
+    private Button mWebView;
+    private Button mAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
                 "onCreate",
                 Toast.LENGTH_SHORT).show();
 
-        anim = findViewById(R.id.label_anim_btn);
-        anim.setOnClickListener(new View.OnClickListener() {
+        mAnim = findViewById(R.id.label_anim_btn);
+        mAnim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AnimSample.class);
@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        webView = findViewById(R.id.web_view_btn);
-        webView.setOnClickListener(new View.OnClickListener() {
+        mWebView = findViewById(R.id.web_view_btn);
+        mWebView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        clickMe = findViewById(R.id.button);
-        clickMe.setOnClickListener(new View.OnClickListener() {
+        mClickMe = findViewById(R.id.button);
+        mClickMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, FrameLayoutActivity.class);
