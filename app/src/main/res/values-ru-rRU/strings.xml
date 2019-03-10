@@ -22,4 +22,8 @@
     <string name="switched_off">выключено</string>
     <string name="enter_name">Введите имя</string>
     <string name="clean">Очистить</string>
+    <string name="marked">помечено</string>
+    <string name="not_noted">не помечено</string>
+    <string name="button_btn">кнопачка</string>
+    <string name="button_clicked">кнопка нажата</string>
 </resources>

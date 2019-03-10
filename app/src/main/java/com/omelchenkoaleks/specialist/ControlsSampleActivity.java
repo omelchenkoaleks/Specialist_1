@@ -39,13 +39,14 @@ public class ControlsSampleActivity extends AppCompatActivity {
                 return false;
             }
         });
+
     }
 
     public void onCheckboxClicked(View view) {
         if (((CheckBox) view).isChecked()) {
-            Toast.makeText(this, "Marked!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.marked), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Not noted!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.not_noted), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -68,5 +69,10 @@ public class ControlsSampleActivity extends AppCompatActivity {
 
     public void onCleanText(View view) {
         userName.setText(null);
+    }
+
+    public void onButtonClicked(View view) {
+        Toast.makeText(this,getString(R.string.button_clicked),
+                Toast.LENGTH_SHORT).show();
     }
 }
