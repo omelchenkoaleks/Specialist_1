@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mWebView;
     private Button mAnim;
     private Button mControls;
+    private Button mDrawnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ControlsSampleActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mDrawnButton = findViewById(R.id.drawn_enter_button);
+        mDrawnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DrawnActivity.class);
                 startActivity(intent);
             }
         });

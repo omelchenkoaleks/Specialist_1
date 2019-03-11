@@ -26,4 +26,5 @@
     <string name="not_noted">не помечено</string>
     <string name="button_btn">кнопачка</string>
     <string name="button_clicked">кнопка нажата</string>
+    <string name="drawn_button">графическая кнопачка</string>
 </resources>

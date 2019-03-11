@@ -26,6 +26,7 @@
     <string name="not_noted">Not noted!</string>
     <string name="button_btn">button</string>
     <string name="button_clicked">Button clicked</string>
+    <string name="drawn_button">drawn button</string>
 
     <string-array name="stations">
         <item>Авиамоторная</item>
