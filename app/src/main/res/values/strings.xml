@@ -27,6 +27,8 @@
     <string name="button_btn">button</string>
     <string name="button_clicked">Button clicked</string>
     <string name="drawn_button">drawn button</string>
+    <string name="add_button">add button</string>
+    <string name="button_no_prefix">I am button №</string>
 
     <string-array name="stations">
         <item>Авиамоторная</item>
