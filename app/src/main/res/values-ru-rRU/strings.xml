@@ -27,4 +27,6 @@
     <string name="button_btn">кнопачка</string>
     <string name="button_clicked">кнопка нажата</string>
     <string name="drawn_button">графическая кнопачка</string>
+    <string name="add_button">добавить кнопку</string>
+    <string name="button_no_prefix">я кнопка №</string>
 </resources>

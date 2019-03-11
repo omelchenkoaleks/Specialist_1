@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">intent</string>
+    <string name="second_activity_text">SECOND ACTIVITY</string>
+</resources>
