@@ -3,8 +3,11 @@ package com.omelchenkoaleks.intent;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -21,5 +24,15 @@ public class SecondActivity extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.greeting))
                 .setText(getString(R.string.hello_text) + " " + userName);
+    }
+
+    public void onClick(View view) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:(050)506-01-48"));
+        // проверяем есть ли что-то, что выполнит наш интент
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
+        }
     }
 }

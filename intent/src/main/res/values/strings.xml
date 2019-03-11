@@ -3,4 +3,5 @@
     <string name="second_activity_text">SECOND ACTIVITY</string>
     <string name="enter_your_name_here">Enter your name here</string>
     <string name="hello_text">Hello</string>
+    <string name="call_me_button">call me</string>
 </resources>
