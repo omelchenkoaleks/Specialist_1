@@ -18,6 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ListMetroPickerActivity">
+            <intent-filter>
+                <action android:name="com.omelchenkoaleks.intent.intent.action.PICK_METRO_STATION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

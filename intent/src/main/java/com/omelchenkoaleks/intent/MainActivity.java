@@ -1,19 +1,23 @@
 package com.omelchenkoaleks.intent;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_USER_NAME = "extra userName";
+    public static final String ECTION_PICK_STATION =
+            "com.omelchenkoaleks.intent.intent.action.PICK_METRO_STATION";
     public static final int CODE_SELECT_STATION = 1000;
+    public static final int CODE_SELECT_STATION_MANIFEST = 1001;
     TextView mSelectedStation;
+    TextView mSelectedStationManifest;
 
 
     @Override
@@ -22,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mSelectedStation = findViewById(R.id.answer_station);
-
+        mSelectedStationManifest = findViewById(R.id.selected_station);
     }
 
     public void onClickIntent(View view) {
@@ -39,12 +43,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onChooseStationClick(View view) {
-        Intent intent = new Intent(this, ListViewActivity.class);
-        startActivityForResult(intent, CODE_SELECT_STATION);
+        switch (view.getId()) {
+            case R.id.choose_station:
+                Intent intent = new Intent(this, ListViewActivity.class);
+                startActivityForResult(intent, CODE_SELECT_STATION);
+                break;
+            case R.id.select_station:
+                Intent intentSelect = new Intent(ECTION_PICK_STATION);
+                startActivityForResult(intentSelect, CODE_SELECT_STATION_MANIFEST);
+                break;
+                default:
+                    Toast.makeText(this, "No )))", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
         if (requestCode == CODE_SELECT_STATION) {
             if (resultCode == RESULT_OK) {
                 mSelectedStation.setText(data
@@ -54,6 +69,15 @@ public class MainActivity extends AppCompatActivity {
                 mSelectedStation.setText(getString(R.string.no_station_text));
             }
         }
-//        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CODE_SELECT_STATION_MANIFEST) {
+            if (resultCode == RESULT_OK) {
+                mSelectedStationManifest.setText(data
+                        .getStringExtra(ListMetroPickerActivity
+                                .EXTRA_SELECTED_STATION_MANIFEST));
+            } else {
+                mSelectedStationManifest.setText(R.string.no_station_text);
+            }
+        }
     }
 }

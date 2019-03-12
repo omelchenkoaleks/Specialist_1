@@ -6,6 +6,26 @@
     android:padding="8dp"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/selected_station"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_station"
+        android:hint="@string/answer"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/select_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onChooseStationClick"
+        android:text="@string/choose_station_button" />
+
+
     <EditText
         android:id="@+id/userName"
         android:layout_width="match_parent"
