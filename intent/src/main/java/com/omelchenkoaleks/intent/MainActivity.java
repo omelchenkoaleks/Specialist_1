@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
         mSelectedStation = findViewById(R.id.answer_station);
         mSelectedStationManifest = findViewById(R.id.selected_station);
+
+        // так мы можем посмотреть какое действие имеет интент этого Астивити
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        Toast.makeText(this, action, Toast.LENGTH_SHORT).show();
     }
 
     public void onClickIntent(View view) {

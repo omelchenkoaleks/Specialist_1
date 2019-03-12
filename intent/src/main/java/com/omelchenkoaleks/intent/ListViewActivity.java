@@ -3,11 +3,13 @@ package com.omelchenkoaleks.intent;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ListViewActivity extends ListActivity
         implements AdapterView.OnItemClickListener {
