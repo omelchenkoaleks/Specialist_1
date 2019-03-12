@@ -11,14 +11,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:hint="@string/enter_your_name_here"
         android:paddingStart="16dp"
-        android:hint="@string/enter_your_name_here" />
+        android:paddingEnd="16dp" />
 
     <Button
+        android:id="@+id/enter_second_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClickIntent"
         android:layout_below="@+id/userName"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickIntent" />
+
+    <TextView
+        android:id="@+id/answer_station"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/choose_station"
+        android:hint="@string/answer"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/choose_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onChooseStationClick"
+        android:text="@string/choose_station_button" />
 
 </RelativeLayout>
