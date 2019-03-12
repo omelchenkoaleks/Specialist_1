@@ -7,6 +7,7 @@
     <string name="answer">answer</string>
     <string name="choose_station_button">choose station</string>
     <string name="no_station_text">No station selected!</string>
+    <string name="no_text">NO</string>
 
     <string-array name="stations">
         <item>Авиамоторная</item>

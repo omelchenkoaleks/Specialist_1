@@ -3,7 +3,6 @@ package com.omelchenkoaleks.intent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.accessibility.AccessibilityManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(intent, CODE_SELECT_STATION);
                 } else {
-                    Toast.makeText(this, "NO", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.no_text), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.select_station:
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 if (intentSelect.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(intentSelect, CODE_SELECT_STATION_MANIFEST);
                 } else {
-                    Toast.makeText(this, "NO", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.no_text), Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
         if (requestCode == CODE_SELECT_STATION) {
-            if (resultCode == RESULT_OK) {
+            if (resultCode == RESULT_OK && data != null) {
                 mSelectedStation.setText(data
                         .getStringExtra(ListViewActivity
                                 .EXTRA_SELECTED_STATION));
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (requestCode == CODE_SELECT_STATION_MANIFEST) {
-            if (resultCode == RESULT_OK) {
+            if (resultCode == RESULT_OK && data != null) {
                 mSelectedStationManifest.setText(data
                         .getStringExtra(ListMetroPickerActivity
                                 .EXTRA_SELECTED_STATION_MANIFEST));
