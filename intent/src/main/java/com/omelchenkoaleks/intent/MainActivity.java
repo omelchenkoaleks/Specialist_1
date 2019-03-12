@@ -3,6 +3,7 @@ package com.omelchenkoaleks.intent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,14 +47,24 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.choose_station:
                 Intent intent = new Intent(this, ListViewActivity.class);
-                startActivityForResult(intent, CODE_SELECT_STATION);
+                // выполняем полезную проверку
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(intent, CODE_SELECT_STATION);
+                } else {
+                    Toast.makeText(this, "NO", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.select_station:
                 Intent intentSelect = new Intent(ECTION_PICK_STATION);
-                startActivityForResult(intentSelect, CODE_SELECT_STATION_MANIFEST);
+                // выполняем полезную проверку
+                if (intentSelect.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(intentSelect, CODE_SELECT_STATION_MANIFEST);
+                } else {
+                    Toast.makeText(this, "NO", Toast.LENGTH_SHORT).show();
+                }
                 break;
-                default:
-                    Toast.makeText(this, "No )))", Toast.LENGTH_SHORT).show();
+            default:
+                Toast.makeText(this, "No )))", Toast.LENGTH_SHORT).show();
         }
     }
 
