@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
             mSelectedStation.setText(R.string.no_station_text);
         }
 
+        // инициализируем для того, чтобы можно было забирать данные из SharedPreferences
+        // сразу при инициализации...
         mSharedPreferencesManifest = getSharedPreferences(PREFERENCES_MANIFEST, MODE_PRIVATE);
         String selectedStationManifest = mSharedPreferencesManifest.getString(KEY_STATION_MANIFEST, null);
         if (selectedStationManifest != null) {
@@ -100,18 +102,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *  Этот метод начинает работу тогда, когда та активити, которая была вызвана с помощью Intent
+     *  (вторая активити, допустим), завершает свою работу и сюда возращается результат...
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
+        // requestCode - проверяем: а, та ли это астивити???
         if (requestCode == CODE_SELECT_STATION) {
+            // т.к. у нас есть необходимость сохранить данные = мы получаем редактор
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             if (resultCode == RESULT_OK && data != null) {
+                // значение берется из того самого Intent, который нам вернула "вторая активити"
                 String selectedStation = data
                         .getStringExtra(ListViewActivity.EXTRA_SELECTED_STATION);
+                // полученное значение мы тут записываем, а ниже мы еге еще и сохраняем с помощью редактора
                 mSelectedStation.setText(selectedStation);
+                // редактор по нужному ключу будет сохранять нужное значение,
+                // а откуда берется значение? Выше написано:
                 editor.putString(KEY_STATION, selectedStation);
             } else {
                 mSelectedStation.setText(getString(R.string.no_station_text));
+                // если же ничего не было выбрано, то этот ключ не нужен мы его удалаяем
                 editor.remove(KEY_STATION);
             }
             editor.apply();
