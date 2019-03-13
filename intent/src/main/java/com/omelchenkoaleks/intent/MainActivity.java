@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
     public static final int CODE_SELECT_STATION_MANIFEST = 1001;
 
     // для работы с SharedPreferences
+    // 1-е: нам нужно имя файла
     public static final String PREFERENCES = "preferences";
+    // 2-е: нам нужен какой-то ключ
     public static final String KEY_STATION = "selected station";
     public static final String PREFERENCES_MANIFEST = "preferences manifest";
     public static final String KEY_STATION_MANIFEST = "selected station manifest";
@@ -136,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
                 String selectedStationManifest = data
                         .getStringExtra(ListMetroPickerActivity.EXTRA_SELECTED_STATION_MANIFEST);
                 mSelectedStationManifest.setText(selectedStationManifest);
+                // говорим редактору: положи в коробочку с нашим ключем это значение
                 editorManifest.putString(KEY_STATION_MANIFEST, selectedStationManifest);
-                editorManifest.apply();
             } else {
                 mSelectedStationManifest.setText(R.string.no_station_text);
                 editorManifest.remove(KEY_STATION_MANIFEST);
