@@ -1,6 +1,7 @@
 package com.omelchenkoaleks.intent;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,8 +17,17 @@ public class MainActivity extends AppCompatActivity {
             "com.omelchenkoaleks.intent.intent.action.PICK_METRO_STATION";
     public static final int CODE_SELECT_STATION = 1000;
     public static final int CODE_SELECT_STATION_MANIFEST = 1001;
-    TextView mSelectedStation;
-    TextView mSelectedStationManifest;
+
+    // для работы с SharedPreferences
+    public static final String PREFERENCES = "preferences";
+    public static final String KEY_STATION = "selected station";
+    public static final String PREFERENCES_MANIFEST = "preferences manifest";
+    public static final String KEY_STATION_MANIFEST = "selected station manifest";
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences mSharedPreferencesManifest;
+
+    private TextView mSelectedStation;
+    private TextView mSelectedStationManifest;
 
 
     @Override
@@ -25,8 +35,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         mSelectedStation = findViewById(R.id.answer_station);
         mSelectedStationManifest = findViewById(R.id.selected_station);
+
+        // Сохраняем данные в SharedPreferences
+        mSharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
+        String selectedStation = mSharedPreferences.getString(KEY_STATION, null);
+        if (selectedStation != null) {
+            mSelectedStation.setText(selectedStation);
+        } else {
+            mSelectedStation.setText(R.string.no_station_text);
+        }
+
+        mSharedPreferencesManifest = getSharedPreferences(PREFERENCES_MANIFEST, MODE_PRIVATE);
+        String selectedStationManifest = mSharedPreferencesManifest.getString(KEY_STATION_MANIFEST, null);
+        if (selectedStationManifest != null) {
+            mSelectedStationManifest.setText(selectedStationManifest);
+        } else {
+            mSelectedStationManifest.setText(R.string.no_station_text);
+        }
 
         // так мы можем посмотреть какое действие имеет интент этого Астивити
         Intent intent = getIntent();
@@ -76,23 +104,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
         if (requestCode == CODE_SELECT_STATION) {
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
             if (resultCode == RESULT_OK && data != null) {
-                mSelectedStation.setText(data
-                        .getStringExtra(ListViewActivity
-                                .EXTRA_SELECTED_STATION));
+                String selectedStation = data
+                        .getStringExtra(ListViewActivity.EXTRA_SELECTED_STATION);
+                mSelectedStation.setText(selectedStation);
+                editor.putString(KEY_STATION, selectedStation);
             } else {
                 mSelectedStation.setText(getString(R.string.no_station_text));
+                editor.remove(KEY_STATION);
             }
+            editor.apply();
         }
 
         if (requestCode == CODE_SELECT_STATION_MANIFEST) {
+            SharedPreferences.Editor editorManifest = mSharedPreferencesManifest.edit();
             if (resultCode == RESULT_OK && data != null) {
-                mSelectedStationManifest.setText(data
-                        .getStringExtra(ListMetroPickerActivity
-                                .EXTRA_SELECTED_STATION_MANIFEST));
+                String selectedStationManifest = data
+                        .getStringExtra(ListMetroPickerActivity.EXTRA_SELECTED_STATION_MANIFEST);
+                mSelectedStationManifest.setText(selectedStationManifest);
+                editorManifest.putString(KEY_STATION_MANIFEST, selectedStationManifest);
+                editorManifest.apply();
             } else {
                 mSelectedStationManifest.setText(R.string.no_station_text);
+                editorManifest.remove(KEY_STATION_MANIFEST);
             }
+            editorManifest.apply();
         }
     }
 }
