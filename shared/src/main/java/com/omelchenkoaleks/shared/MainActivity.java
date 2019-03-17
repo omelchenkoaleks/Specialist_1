@@ -19,9 +19,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // В onCreate() делаем только инициализацию:
         mNameStationText = findViewById(R.id.station_text);
-
         mStorage = new Storage(this);
+    }
+
+    // В onStart() показываем:
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // при запуске приложения записываем в TextView строчку ...
         mNameStationText.setText(mStorage.getStation());
     }
 
@@ -43,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 // либо сохранили null
                 mStorage.storeStation(null);
             }
+            // то что в Storage есть берем и записываем:
             mNameStationText.setText(mStorage.getStation());
         }
     }
