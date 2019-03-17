@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,16 +22,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // В onCreate() делаем только инициализацию:
         mNameStationText = findViewById(R.id.station_text);
         mStorage = new Storage(this);
     }
 
-    // В onStart() показываем:
     @Override
     protected void onStart() {
         super.onStart();
-        // при запуске приложения записываем в TextView строчку ...
         mNameStationText.setText(mStorage.getStation());
     }
 
@@ -59,5 +57,19 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_clear:
+                mStorage.setStation(null);
+                mNameStationText.setText(mStorage.getStation());
+                return true;
+            case R.id.item_exit:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
