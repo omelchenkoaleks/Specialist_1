@@ -18,16 +18,10 @@ public class MainActivity extends AppCompatActivity {
     public static final int CODE_SELECT_STATION = 1000;
     public static final int CODE_SELECT_STATION_MANIFEST = 1001;
 
-    // для работы с SharedPreferences
-    // 1-е: нам нужно имя файла
-    public static final String PREFERENCES = "preferences";
-    // 2-е: нам нужен какой-то ключ
-    public static final String KEY_STATION = "selected station";
-    public static final String PREFERENCES_MANIFEST = "preferences manifest";
-    public static final String KEY_STATION_MANIFEST = "selected station manifest";
     private SharedPreferences mSharedPreferences;
     private SharedPreferences mSharedPreferencesManifest;
 
+    private Storage mStorage;
     private TextView mSelectedStation;
     private TextView mSelectedStationManifest;
 
@@ -42,23 +36,9 @@ public class MainActivity extends AppCompatActivity {
         mSelectedStationManifest = findViewById(R.id.selected_station);
 
         // Сохраняем данные в SharedPreferences
-        mSharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
-        String selectedStation = mSharedPreferences.getString(KEY_STATION, null);
-        if (selectedStation != null) {
-            mSelectedStation.setText(selectedStation);
-        } else {
-            mSelectedStation.setText(R.string.no_station_text);
-        }
-
-        // инициализируем для того, чтобы можно было забирать данные из SharedPreferences
-        // сразу при инициализации...
-        mSharedPreferencesManifest = getSharedPreferences(PREFERENCES_MANIFEST, MODE_PRIVATE);
-        String selectedStationManifest = mSharedPreferencesManifest.getString(KEY_STATION_MANIFEST, null);
-        if (selectedStationManifest != null) {
-            mSelectedStationManifest.setText(selectedStationManifest);
-        } else {
-            mSelectedStationManifest.setText(R.string.no_station_text);
-        }
+        mStorage = new Storage(this);
+        mSelectedStation.setText(mStorage.getStation());
+        mSelectedStationManifest.setText(mStorage.getStation());
 
         // так мы можем посмотреть какое действие имеет интент этого Астивити
         Intent intent = getIntent();
@@ -104,47 +84,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     *  Этот метод начинает работу тогда, когда та активити, которая была вызвана с помощью Intent
-     *  (вторая активити, допустим), завершает свою работу и сюда возращается результат...
-     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-
-        // requestCode - проверяем: а, та ли это астивити???
         if (requestCode == CODE_SELECT_STATION) {
-            // т.к. у нас есть необходимость сохранить данные = мы получаем редактор
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
             if (resultCode == RESULT_OK && data != null) {
-                // значение берется из того самого Intent, который нам вернула "вторая активити"
                 String selectedStation = data
                         .getStringExtra(ListViewActivity.EXTRA_SELECTED_STATION);
-                // полученное значение мы тут записываем, а ниже мы еге еще и сохраняем с помощью редактора
                 mSelectedStation.setText(selectedStation);
-                // редактор по нужному ключу будет сохранять нужное значение,
-                // а откуда берется значение? Выше написано:
-                editor.putString(KEY_STATION, selectedStation);
+                mStorage.storeStation(selectedStation);
             } else {
                 mSelectedStation.setText(getString(R.string.no_station_text));
-                // если же ничего не было выбрано, то этот ключ не нужен мы его удалаяем
-                editor.remove(KEY_STATION);
+                mStorage.storeStation(null);
             }
-            editor.apply();
         }
 
         if (requestCode == CODE_SELECT_STATION_MANIFEST) {
-            SharedPreferences.Editor editorManifest = mSharedPreferencesManifest.edit();
             if (resultCode == RESULT_OK && data != null) {
                 String selectedStationManifest = data
                         .getStringExtra(ListMetroPickerActivity.EXTRA_SELECTED_STATION_MANIFEST);
                 mSelectedStationManifest.setText(selectedStationManifest);
-                // говорим редактору: положи в коробочку с нашим ключем это значение
-                editorManifest.putString(KEY_STATION_MANIFEST, selectedStationManifest);
+                mStorage.storeStation(selectedStationManifest);
             } else {
                 mSelectedStationManifest.setText(R.string.no_station_text);
-                editorManifest.remove(KEY_STATION_MANIFEST);
+                mStorage.storeStation(null);
             }
-            editorManifest.apply();
         }
     }
 }
