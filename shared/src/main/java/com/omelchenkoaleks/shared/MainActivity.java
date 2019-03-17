@@ -36,12 +36,11 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK && data != null) {
                 String selectedStation = data
                         .getStringExtra(ListStationMetroActivity.EXTRA_RESULT_STATION_TEXT_VIEW);
-                mNameStationText.setText(selectedStation);
                 mStorage.storeStation(selectedStation);
             } else {
-                mNameStationText.setText(getString(R.string.no_text));
                 mStorage.storeStation(null);
             }
+            mNameStationText.setText(mStorage.getStation());
         }
     }
 }

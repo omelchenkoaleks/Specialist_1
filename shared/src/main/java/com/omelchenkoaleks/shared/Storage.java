@@ -12,13 +12,15 @@ class Storage {
 
     Storage(Context context) {
         mContext = context;
-        mSharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        mSharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES,
+                Context.MODE_PRIVATE);
     }
 
     String getStation() {
         String station = mSharedPreferences.getString(KEY_STATION_SHARED, null);
         if (station == null) {
-            station = "NO ...";
+            station = mContext.getResources()
+                    .getString(R.string.no_text);
         }
         return station;
     }
