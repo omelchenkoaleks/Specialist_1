@@ -5,6 +5,7 @@
     <string name="no_text">NO ...</string>
     <string name="clear_item_menu_text">clear</string>
     <string name="exit_item_menu_text">exit</string>
+    <string name="send_item_menu_text">send the station</string>
 
     <string-array name="stations">
         <item>Авиамоторная</item>
