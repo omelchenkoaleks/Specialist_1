@@ -34,10 +34,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == CODE_STATION_LIST) {
             if (resultCode == RESULT_OK && data != null) {
+                // получили какую-то строчку
                 String selectedStation = data
                         .getStringExtra(ListStationMetroActivity.EXTRA_RESULT_STATION_TEXT_VIEW);
+                // сохранили строчку
                 mStorage.storeStation(selectedStation);
             } else {
+                // либо сохранили null
                 mStorage.storeStation(null);
             }
             mNameStationText.setText(mStorage.getStation());
