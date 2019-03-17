@@ -22,7 +22,7 @@ class Storage {
         return (station == null) ? mDefaultString : station;
     }
 
-    void storeStation(String stationName) {
+    void setStation(String stationName) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         if (stationName != null) {
             editor.putString(KEY_STATION_SHARED, stationName);

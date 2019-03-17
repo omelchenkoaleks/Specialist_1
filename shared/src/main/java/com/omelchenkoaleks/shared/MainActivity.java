@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
                 String selectedStation = data
                         .getStringExtra(ListStationMetroActivity.EXTRA_RESULT_STATION_TEXT_VIEW);
                 // сохранили строчку
-                mStorage.storeStation(selectedStation);
+                mStorage.setStation(selectedStation);
             } else {
                 // либо сохранили null
-                mStorage.storeStation(null);
+                mStorage.setStation(null);
             }
             // то что в Storage есть берем и записываем:
             mNameStationText.setText(mStorage.getStation());
