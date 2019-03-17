@@ -2,6 +2,8 @@ package com.omelchenkoaleks.shared;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -41,17 +43,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == CODE_STATION_LIST) {
             if (resultCode == RESULT_OK && data != null) {
-                // получили какую-то строчку
                 String selectedStation = data
                         .getStringExtra(ListStationMetroActivity.EXTRA_RESULT_STATION_TEXT_VIEW);
-                // сохранили строчку
                 mStorage.setStation(selectedStation);
             } else {
-                // либо сохранили null
                 mStorage.setStation(null);
             }
-            // то что в Storage есть берем и записываем:
             mNameStationText.setText(mStorage.getStation());
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
     }
 }

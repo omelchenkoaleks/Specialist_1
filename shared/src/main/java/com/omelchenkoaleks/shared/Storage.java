@@ -13,8 +13,7 @@ class Storage {
     Storage(Context context) {
         mSharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES,
                 Context.MODE_PRIVATE);
-        mDefaultString = context.getResources()
-                .getString(R.string.no_text);
+        mDefaultString = context.getResources().getString(R.string.no_text);
     }
 
     String getStation() {

@@ -3,6 +3,8 @@
     <string name="name_station_text">name station</string>
     <string name="display_station_button">display station</string>
     <string name="no_text">NO ...</string>
+    <string name="clear_item_menu_text">clear</string>
+    <string name="exit_item_menu_text">exit</string>
 
     <string-array name="stations">
         <item>Авиамоторная</item>
