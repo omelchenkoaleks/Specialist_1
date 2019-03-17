@@ -2,6 +2,7 @@
     <string name="app_name">shared</string>
     <string name="name_station_text">name station</string>
     <string name="display_station_button">display station</string>
+    <string name="no_text">NO ...</string>
 
     <string-array name="stations">
         <item>Авиамоторная</item>
