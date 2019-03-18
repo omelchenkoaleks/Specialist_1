@@ -6,27 +6,33 @@
     android:padding="8dp"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/ok_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:text="@android:string/ok"
-        android:onClick="onOkButtonClick"/>
-
-    <EditText
-        android:id="@+id/input_field_et"
+    <LinearLayout
+        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/ok_btn"
-        android:hint="@string/enter_notes_et"
-        android:inputType="text" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/input_field_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_notes_et"
+            android:layout_weight="0.75" />
+
+        <Button
+            android:id="@+id/ok_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:onClick="onOkButtonClick"
+            android:text="@android:string/ok" />
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/notes_list_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/input_field_et"
+        android:layout_below="@+id/linear_layout"
         android:layout_marginTop="8dp" />
 
 </RelativeLayout>
