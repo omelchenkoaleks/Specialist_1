@@ -30,31 +30,19 @@ public class ListStationMetroActivity extends ListActivity
 
         getListView().setOnItemClickListener(this);
 
-        /**
-         * Для того, чтобы контекстное меню работало - нужно зарегистрировать тот объект,
-         * для которого оно будет работать... В данном случае ListView...
-         */
         registerForContextMenu(getListView());
     }
 
-    /**
-     * При нажатии на пункт с контекстным меню будет вызван этот метод
-     */
     @Override
     public void onCreateContextMenu(ContextMenu menu,
                                     View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        // создаем объекты из разметки...
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_list_station, menu);
-        // забираем из menuInfo информацию, касающуюся нашего адаптера, для того,
-        // чтобы потом можно было получить что-то конкретное...
         AdapterView.AdapterContextMenuInfo info =
                 (AdapterView.AdapterContextMenuInfo) menuInfo;
-        // получаем "эту" конкретную инфо...
         CharSequence stationSelected = getStationFromMenuInfo(info);
-        // и эту информацию мы устанавливаем в качестве подзаголовка...
         menu.setHeaderTitle(stationSelected);
     }
 
@@ -62,13 +50,10 @@ public class ListStationMetroActivity extends ListActivity
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_send:
-                // пользуясь адаптером можем вытащить инфо из пункта меню, который был передан...
                 AdapterView.AdapterContextMenuInfo info =
                         (AdapterView.AdapterContextMenuInfo) item
                                 .getMenuInfo();
-                // получаем эту информацию о станции...
                 CharSequence stationSelected = getStationFromMenuInfo(info);
-                // и посылаем эту информацию...
                 sendStation(stationSelected);
                 return true;
             case R.id.item_exit:

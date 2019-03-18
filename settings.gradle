@@ -1,1 +1,1 @@
-include ':app', ':intent', ':shared'
+include ':app', ':intent', ':shared', ':db'

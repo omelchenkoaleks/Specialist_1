@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 class Storage {
-    private static final String SHARED_PREFERENCES = "SHARED_PREFERENCES";
-    private static final String KEY_STATION_SHARED = "KEY_STATION_SHARED";
+    private static final String SHARED_PREFERENCES = "SharedPreferences name";
+    private static final String KEY_STATION_SHARED = "key Station SharedPreferences";
 
     private SharedPreferences mSharedPreferences;
     private String mDefaultString;
