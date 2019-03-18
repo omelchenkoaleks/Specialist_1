@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     EditText mInputField;
     ListView mNotesList;
+    SimpleCursorAdapter mSimpleCursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
