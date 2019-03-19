@@ -4,7 +4,11 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -37,20 +41,56 @@ public class MainActivity extends AppCompatActivity {
                 this, R.layout.note, null, FROM, TO, 0);
 
         mNotesList.setAdapter(mSimpleCursorAdapter);
+
+        // регистрируем контекстное меню...
+        registerForContextMenu(mNotesList);
+        registerForContextMenu(mInputField);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu,
+                                    View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        switch (v.getId()) {
+            case R.id.notes_list_lv:
+                MenuInflater inflater = getMenuInflater();
+                inflater.inflate(R.menu.notes_menu, menu);
+                break;
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_edit:
+                return true;
+            case R.id.item_delete:
+                // создаем объект (info) из которого можно вытащить нужный id объекта, чтобы
+                // можно было удалить тот, уже не нужный, объект...
+                AdapterView.AdapterContextMenuInfo info =
+                        (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                deleteNote(info.id);
+                // обновляем список...
+                showNotes();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private void deleteNote(long id) {
+        // получаем бд
+        mSQLiteDatabase = (mSQLiteDatabase == null)
+                ? mDbOpenHelper.getWritableDatabase() : mSQLiteDatabase;
+        // удаляем из таблицы в бд
+        mSQLiteDatabase.delete(DbOpenHelper.DB_TABLE, "_id = " + id, null);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         showNotes();
-    }
-
-    private void showNotes() {
-        mSQLiteDatabase = (mSQLiteDatabase == null)
-                ? mDbOpenHelper.getWritableDatabase() : mSQLiteDatabase;
-        Cursor cursor = mSQLiteDatabase.query(DbOpenHelper.DB_TABLE, FIELDS,
-                null, null,null, null, ORDER);
-        mSimpleCursorAdapter.swapCursor(cursor);
     }
 
     @Override
@@ -73,5 +113,13 @@ public class MainActivity extends AppCompatActivity {
             showNotes();
         }
         mInputField.setText(null);
+    }
+
+    private void showNotes() {
+        mSQLiteDatabase = (mSQLiteDatabase == null)
+                ? mDbOpenHelper.getWritableDatabase() : mSQLiteDatabase;
+        Cursor cursor = mSQLiteDatabase.query(DbOpenHelper.DB_TABLE, FIELDS,
+                null, null, null, null, ORDER);
+        mSimpleCursorAdapter.swapCursor(cursor);
     }
 }
