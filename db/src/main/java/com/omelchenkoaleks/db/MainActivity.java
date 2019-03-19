@@ -1,5 +1,6 @@
 package com.omelchenkoaleks.db;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -38,14 +39,10 @@ public class MainActivity extends AppCompatActivity {
         mNotesList.setAdapter(mSimpleCursorAdapter);
     }
 
-    /**
-     * В этом методе мы подключаемся к нашей базе данных, но что будет, если наше приложение
-     * будет скрыто? Она будет продолжать потреблять ресурсы - поэтому...
-     * В методе onStop() мы ее закрываем... null = чтобы сборщик мусора ее почистил...
-     */
     @Override
     protected void onResume() {
         super.onResume();
+        // этот метод позволяет открывать бд, тогда, когда это будет нужно...
         mSQLiteDatabase = mDbOpenHelper.getWritableDatabase();
         Cursor cursor = mSQLiteDatabase.query(DbOpenHelper.DB_TABLE, FIELDS,
                 null, null,null, null, ORDER);
@@ -61,5 +58,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onOkButtonClick(View view) {}
+    public void onOkButtonClick(View view) {
+        // получаем ту запись, которую пользователь хочет добавить...
+        String newNote = mInputField.getText().toString().trim();
+        // проверяем, если пользователь действительно что-то ввел, тогда имеет смысл это сохранять...
+        if (newNote.length() > 0) {
+            // для того чтобы вставить что-то потребуется: бд и ContentValues...
+            ContentValues contentValues = new ContentValues(1);
+            contentValues.put(DbOpenHelper.COLUMN_NOTE, newNote);
+            mSQLiteDatabase = mDbOpenHelper.getWritableDatabase();
+            mSQLiteDatabase.insert(DbOpenHelper.DB_TABLE, null, contentValues);
+        }
+        // делаем зачистку поля...
+        mInputField.setText(null);
+
+        /**
+         * Комментарий по коду выше:
+         * вставить вставили, но адаптер пока еще ничего не знает...
+         */
+    }
 }
