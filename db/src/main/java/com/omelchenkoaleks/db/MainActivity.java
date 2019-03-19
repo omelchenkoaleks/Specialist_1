@@ -63,11 +63,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onOkButtonClick(View view) {
-        // получаем ту запись, которую пользователь хочет добавить...
         String newNote = mInputField.getText().toString().trim();
-        // проверяем, если пользователь действительно что-то ввел, тогда имеет смысл это сохранять...
         if (newNote.length() > 0) {
-            // для того чтобы вставить что-то потребуется: бд и ContentValues...
             ContentValues contentValues = new ContentValues(1);
             contentValues.put(DbOpenHelper.COLUMN_NOTE, newNote);
             mSQLiteDatabase = (mSQLiteDatabase == null)
@@ -75,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             mSQLiteDatabase.insert(DbOpenHelper.DB_TABLE, null, contentValues);
             showNotes();
         }
-        // делаем зачистку поля...
         mInputField.setText(null);
     }
 }

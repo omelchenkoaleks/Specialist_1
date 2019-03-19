@@ -19,12 +19,6 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 
     Context mContext;
 
-    /**
-     * Отставили только один параметер - остальные не будут использваться...
-     * В конструктор суперкласса возвращаем context, name заменяем DB_NAME, factory
-     * нам нужно не будет - устанавливаем null, version = метод onUpgrade вызывается,
-     * когда будет обновляться версия бд - поэтому ее нужно задать...
-     */
     public DbOpenHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         mContext = context;
