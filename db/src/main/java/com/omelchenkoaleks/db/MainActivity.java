@@ -42,8 +42,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // этот метод позволяет открывать бд, тогда, когда это будет нужно...
-        mSQLiteDatabase = mDbOpenHelper.getWritableDatabase();
+        showNotes();
+    }
+
+    private void showNotes() {
+        mSQLiteDatabase = (mSQLiteDatabase == null)
+                ? mDbOpenHelper.getWritableDatabase() : mSQLiteDatabase;
         Cursor cursor = mSQLiteDatabase.query(DbOpenHelper.DB_TABLE, FIELDS,
                 null, null,null, null, ORDER);
         mSimpleCursorAdapter.swapCursor(cursor);
@@ -66,15 +70,12 @@ public class MainActivity extends AppCompatActivity {
             // для того чтобы вставить что-то потребуется: бд и ContentValues...
             ContentValues contentValues = new ContentValues(1);
             contentValues.put(DbOpenHelper.COLUMN_NOTE, newNote);
-            mSQLiteDatabase = mDbOpenHelper.getWritableDatabase();
+            mSQLiteDatabase = (mSQLiteDatabase == null)
+                    ? mDbOpenHelper.getWritableDatabase() : mSQLiteDatabase;
             mSQLiteDatabase.insert(DbOpenHelper.DB_TABLE, null, contentValues);
+            showNotes();
         }
         // делаем зачистку поля...
         mInputField.setText(null);
-
-        /**
-         * Комментарий по коду выше:
-         * вставить вставили, но адаптер пока еще ничего не знает...
-         */
     }
 }
