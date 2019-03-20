@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Connection</string>
+    <string name="rates_url">http://www.cbr.ru/scripts/XML_daily.asp</string>
+</resources>
