@@ -8,18 +8,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DbOpenHelper extends SQLiteOpenHelper {
-    public static final int DB_VERSION = 1;
-    public static final String DB_NAME = "notes.db";
-    public static final String DB_TABLE = "notes";
-    public static final String COLUMN_NOTE = "note";
+    private static final int DB_VERSION = 1;
+    private static final String DB_NAME = "notes.db";
+    static final String DB_TABLE = "notes";
+    static final String COLUMN_NOTE = "note";
 
     private static final String DB_CREATE = "CREATE TABLE "
             + DB_TABLE + " ( _id INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_NOTE + " TEXT NOT NULL);";
 
-    Context mContext;
+    private Context mContext;
 
-    public DbOpenHelper(@Nullable Context context) {
+    DbOpenHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         mContext = context;
     }
