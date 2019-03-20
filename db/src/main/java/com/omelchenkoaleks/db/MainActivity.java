@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         // регистрируем контекстное меню...
         registerForContextMenu(mNotesList);
-        registerForContextMenu(mInputField);
     }
 
     @Override
@@ -103,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
              * ВАЖНО:
              * Курсор на первое место? Почему?
              * т.е. ставить в первую позицию в полученном результате...
+             * это означает, что его нужно правильно позиционировать - чтобы
+             * он стал в начало нашего списка (записи)...
              */
             cursor.moveToFirst();
             // курсор готов отдавать нужное поле из конкретной записи только по индексу, а
