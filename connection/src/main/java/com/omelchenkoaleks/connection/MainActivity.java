@@ -69,9 +69,8 @@ public class MainActivity extends ListActivity {
                 setTitle(getTitle() + " на " + date);
                 NodeList nodeList = docElement
                         .getElementsByTagName("Valute");
-                int count = nodeList.getLength();
-                if (nodeList != null && count > 0) {
-                    for (int i = 0; i < count; i++) {
+                if (nodeList != null && nodeList.getLength() > 0) {
+                    for (int i = 0; i < nodeList.getLength(); i++) {
                         Element entry = (Element) nodeList
                                 .item(i);
                         m = new HashMap<String, String>();
