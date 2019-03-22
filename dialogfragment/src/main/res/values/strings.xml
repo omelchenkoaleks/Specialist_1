@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">DialogFragment</string>
+    <string name="select_your_search_engine_bt">Select Your Search Engine</string>
+    <string name="select_your_search_engine_again_bt">Select Your Search Engine Again</string>
+    <string name="text_oops">OOPS</string>
+</resources>
