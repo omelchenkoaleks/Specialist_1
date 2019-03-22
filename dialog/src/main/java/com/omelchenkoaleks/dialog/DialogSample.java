@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-public class DialogSample extends DialogFragment implements BrowserCall {
+public class DialogSample extends DialogFragment {
 
     @NonNull
     @Override
@@ -29,14 +29,11 @@ public class DialogSample extends DialogFragment implements BrowserCall {
                         intent.putExtra(MainActivity.KEY_INDEX, which);
                         getActivity().sendBroadcast(intent);
 
-//                        Activity activity = getActivity();
-//                        ((BrowserCall) activity).callBrowser(which);
+                        // ЗАМЕТКА: с использование приемнки на не нужно проверять
+                        // реализует ли активность наш интерфейс или нет = если
+                        // есть приемник уже хорошо ...
                     }
                 });
         return builder.create();
-    }
-
-    @Override
-    public void callBrowser(int index) {
     }
 }

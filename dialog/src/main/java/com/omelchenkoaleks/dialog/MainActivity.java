@@ -11,11 +11,11 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-public class MainActivity extends AppCompatActivity implements BrowserCall {
+public class MainActivity extends AppCompatActivity {
     public static final String KEY_INDEX = "key index";
     public static final String URL_PREFIX = "http://";
-    public static final CharSequence[] ENGINE_NAME = { "Google", "Yahoo", "Yandex", };
-    public static final String[] ENGINE_URL = { "google.com", "yahoo.com", "yandex.com", };
+    public static final CharSequence[] ENGINE_NAME = {"Google", "Yahoo", "Yandex",};
+    public static final String[] ENGINE_URL = {"google.com", "yahoo.com", "yandex.com",};
     public static final String ACTION_ENGINE_SELECTED =
             "com.omelchenkoaleks.dialog.intent.action.ENGINE_SELECTED";
 
@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements BrowserCall {
         unregisterReceiver(mBroadcastReceiver);
     }
 
-    @Override
     public void callBrowser(int index) {
         if (index >= 0) {
             Uri webpage = Uri.parse(URL_PREFIX + ENGINE_URL[index]);
