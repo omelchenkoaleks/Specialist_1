@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dialog</string>
+    <string name="call_dialog_text_bt">call dialog</string>
 </resources>

@@ -39,7 +39,6 @@ public class DialogFragment_2 extends DialogFragment implements BrowserCall {
                 }).setNegativeButton("Not now", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
             }
         });
 
