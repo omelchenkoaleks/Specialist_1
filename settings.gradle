@@ -1,1 +1,1 @@
-include ':app', ':intent', ':shared', ':db', ':connection', ':dialog', ':dialogfragment', ':receiver'
+include ':app', ':intent', ':shared', ':db', ':connection', ':dialog', ':dialogfragment', ':receiver', ':receiversample'
