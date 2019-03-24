@@ -7,21 +7,28 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String ACTION_SEND_TIMESTAMP =
+            "com.omelchenkoaleks.receiver.intent.action.SEND_TIMESTAMP";
     private static final String ACTION_SEND_INTENT_TEXT =
             "com.omelchenkoaleks.receiver.intent.action.SEND_TEXT";
     private static final String KEY_TEXT = "key text";
 
+    TextView mTimestamp;
+
     BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String text = intent.getStringExtra(KEY_TEXT);
-            if (text != null) {
-                Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+            long time = intent.getLongExtra("timestamp", 0);
+            if (time != 0) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+               mTimestamp.setText(simpleDateFormat.format(time));
             }
         }
     };
@@ -34,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mInputField = findViewById(R.id.enter_et);
+        mTimestamp = findViewById(R.id.timestamp_tv);
 
-        registerReceiver(mBroadcastReceiver, new IntentFilter(ACTION_SEND_INTENT_TEXT));
+        registerReceiver(mBroadcastReceiver, new IntentFilter(ACTION_SEND_TIMESTAMP));
     }
 
     public void onClick(View view) {
